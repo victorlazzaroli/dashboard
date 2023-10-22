@@ -1,2 +1,9 @@
-<h1>{{title}}</h1>
-<router-outlet></router-outlet>
+<header>
+  <app-header [storeName]="title"></app-header>
+</header>
+<main role="main">
+  <router-outlet></router-outlet>
+</main>
+<footer>
+  Footer
+</footer>

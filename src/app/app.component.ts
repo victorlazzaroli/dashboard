@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
+import MainSettings from "./core/constants/mainSettings";
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'dashboard';
+  mainSettings = inject(MainSettings)
+
+  title = this.mainSettings.siteTitle;
 }

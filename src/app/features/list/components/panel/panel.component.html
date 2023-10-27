@@ -1,0 +1,10 @@
+<div
+  class="panel-container"
+  [ngClass]="{
+    'panel-container--rowlayout': layout !== 'grid',
+    'panel-container--gridlayout': layout === 'grid'
+  }">
+  <ng-content>
+
+  </ng-content>
+</div>

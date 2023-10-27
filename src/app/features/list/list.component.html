@@ -1,4 +1,6 @@
-Ciao
-<p *ngFor="let product of (products | async)">
-  {{product.id}}
-</p>
+
+<app-panel layout="grid">
+  <div *ngFor="let product of (products | async)" style="background-color: antiquewhite">
+    {{product.id}}
+  </div>
+</app-panel>

@@ -1,0 +1,7 @@
+{
+  "/api/*": {
+    "target": "http://us-central1-test-b7665.cloudfunctions.net",
+    "secure": false,
+    "changeOrigin": true
+  }
+}

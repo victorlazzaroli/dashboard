@@ -1,0 +1,5 @@
+  <div class="searchbar">
+    <input matInput #inputSearch (keydown.enter)="searchButton._elementRef.nativeElement.click()"
+           type="search" placeholder="Search Product" [(ngModel)]="value" />
+    <button #searchButton mat-button (click)="searchEvnt(inputSearch.value)"><mat-icon>search</mat-icon></button>
+  </div>

@@ -1,6 +1,5 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {ProductDTO, ProductList} from "../../core/dtos/Product";
-import Product from "../../core/models/product";
+import {ProductDTO} from "../../core/dtos/Product";
 import {ProductService} from "../../shared/services/product.service";
 import MainSettings from "../../core/constants/mainSettings";
 import {Observable, of} from "rxjs";

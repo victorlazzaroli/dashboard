@@ -1,4 +1,12 @@
-
+<div style="width: 100%; display: flex; justify-content: flex-end;">
+  <h2 style="width: 100%">{{ "PRODUCTS_PAGE_TITLE" | translate }}</h2>
+  <div style="display:flex; justify-content: flex-end;">
+      <button mat-raised-button color="primary"><mat-icon>add</mat-icon> <span class="button-text">{{"NEW_PRODUCT_BUTTON" | translate}}</span></button>
+      <button mat-raised-button color="warn" disabled><mat-icon>delete</mat-icon> <span class="button-text">{{"REMOVE_PRODUCT_BUTTON" | translate}}</span></button>
+  </div>
+</div>
+<app-search-bar></app-search-bar>
+<app-toolbar></app-toolbar>
 <app-panel layout="grid">
   <div *ngFor="let product of (products | async)" style="background-color: antiquewhite">
     {{product.id}}

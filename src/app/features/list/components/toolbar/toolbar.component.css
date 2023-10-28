@@ -1,0 +1,44 @@
+.toolbar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 0.5rem;
+  border-radius: 5px;
+  background: #f3f3f3;
+}
+
+.toolbar > div {
+  padding: 0 0.75rem;
+  border-right: 1px solid #dedede;
+}
+
+.toolbar div:last-of-type {
+  padding-right: 0;
+  border-right: none;
+}
+
+.toolbar div:first-of-type {
+  padding-left: 0;
+}
+
+.toolbar__checkbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.toolbar__data {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  height: 48px;
+}
+
+.toolbar__data__select {
+  padding-left: 1rem;
+  flex-grow: 1;
+}
+
+.toolbar__data__label {
+  padding-top: 3px;
+}

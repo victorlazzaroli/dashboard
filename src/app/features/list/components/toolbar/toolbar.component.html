@@ -1,0 +1,23 @@
+<div class="toolbar">
+  <div class="toolbar__checkbox">
+    <mat-checkbox [matTooltip]="'SELECT_ALL' | translate"></mat-checkbox>
+  </div>
+  <div class="toolbar__data">
+    <div class="toolbar__data__label">
+      <span>{{"FIELDS_LABEL_SELECTION" | translate}}</span>
+    </div>
+    <div class="toolbar__data__select">
+      <mat-select [(ngModel)]="data" multiple >
+        <mat-option *ngFor="let topping of toppingList" [value]="topping">
+          {{topping}}
+        </mat-option>
+      </mat-select>
+    </div>
+  </div>
+  <div class="toolbar__layoutselector">
+    <mat-button-toggle-group name="panelLayout" aria-label="Product list layout">
+      <mat-button-toggle value="row" [matTooltip]="'ROW_LAYOUT' | translate"><mat-icon>table_rows</mat-icon></mat-button-toggle>
+      <mat-button-toggle value="grid" [matTooltip]="'GRID_LAYOUT' | translate"><mat-icon>grid_view</mat-icon></mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+</div>

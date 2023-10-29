@@ -1,5 +1,5 @@
 import {Component, inject, Input} from '@angular/core';
-import MainSettings from "../../../core/constants/mainSettings";
+import Settings from "../../../core/constants/settings";
 
 @Component({
   selector: 'app-header',

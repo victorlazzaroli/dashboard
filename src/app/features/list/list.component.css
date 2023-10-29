@@ -1,0 +1,10 @@
+.list__header {
+  margin-top: 2rem;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.list__header h2 {
+  width: 100%;
+}

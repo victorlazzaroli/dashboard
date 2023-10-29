@@ -5,5 +5,9 @@
   "SELECT_ALL" : "Seleziona tutto",
   "GRID_LAYOUT": "Layout Griglia",
   "ROW_LAYOUT": "Layout Riga",
-  "FIELDS_LABEL_SELECTION": "Campi da visualizzare"
+  "FIELDS_LABEL_SELECTION": "Campi da visualizzare",
+  "CATEGORY_LABEL": "Categoria",
+  "VIEW_BUTTON": "Dettagli",
+  "PRICE_LABEL": "Prezzo",
+  "EMPOLOYEE_LABEL": "Dipendente"
 }

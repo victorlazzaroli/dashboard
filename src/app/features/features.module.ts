@@ -15,7 +15,10 @@ import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatOptionModule} from "@angular/material/core";
 import {MatSelectModule} from "@angular/material/select";
 import { SearchBarComponent } from './list/components/search-bar/search-bar.component';
-
+import { ActionbarComponent } from './list/components/actionbar/actionbar.component';
+import {MatPaginatorModule} from "@angular/material/paginator";
+import { CardComponent } from './list/components/card/card.component';
+import {MatCardModule} from "@angular/material/card";
 
 
 @NgModule({
@@ -24,7 +27,9 @@ import { SearchBarComponent } from './list/components/search-bar/search-bar.comp
     DetailComponent,
     PanelComponent,
     ToolbarComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    ActionbarComponent,
+    CardComponent
   ],
   imports: [
     CommonModule,
@@ -37,7 +42,9 @@ import { SearchBarComponent } from './list/components/search-bar/search-bar.comp
     MatCheckboxModule,
     MatTooltipModule,
     MatOptionModule,
-    MatSelectModule
+    MatSelectModule,
+    MatPaginatorModule,
+    MatCardModule
   ]
 })
 export class FeaturesModule { }

@@ -32,4 +32,14 @@ export class ProductService {
 
     return this.http.get<Product>(url)
   }
+
+  deleteProduct(idStore: string, idProduct: string | null): Observable<void> {
+    if (!idProduct || !idStore) {
+      throw throwError(() => 'Invalid paramaters')
+    }
+
+    const url = this.baseUrl + environment.productApi.deleteProduct.replace('{idStore}', idStore).replace('{idProduct}', idProduct);
+
+    return this.http.delete<void>(url)
+  }
 }

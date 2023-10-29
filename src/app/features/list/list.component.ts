@@ -2,7 +2,19 @@ import {Component, inject, OnInit} from '@angular/core';
 import {ProductDTO} from "../../core/dtos/Product";
 import {ProductService} from "../../shared/services/product.service";
 import Settings from "../../core/constants/settings";
-import {BehaviorSubject, combineLatest, filter, map, Observable, of, skip, tap} from "rxjs";
+import {
+  BehaviorSubject,
+  combineLatest,
+  filter,
+  map,
+  Observable,
+  of,
+  ReplaySubject,
+  retryWhen,
+  skip,
+  Subject, switchMap,
+  tap
+} from "rxjs";
 import {PageEvent} from "@angular/material/paginator";
 import {layoutType} from "../../shared/types/layoutType";
 
@@ -12,6 +24,9 @@ import {layoutType} from "../../shared/types/layoutType";
   styleUrls: ['./list.component.css']
 })
 export class ListComponent {
+  private readonly mainSettings = inject(Settings)
+  private readonly productService = inject(ProductService)
+
 
   page: PageEvent = {pageIndex:0, pageSize: 10, length: 0};
 
@@ -22,14 +37,14 @@ export class ListComponent {
   searchInput$: BehaviorSubject<string> = new BehaviorSubject<string>('');
   pageEvent$: BehaviorSubject<PageEvent> = new BehaviorSubject<PageEvent>(this.page);
 
-  protected readonly mainSettings = inject(Settings)
-
-  productService = inject(ProductService)
+  updateData$: ReplaySubject<void> = new ReplaySubject<void>();
 
   layout: layoutType = 'row';
 
   constructor() {
-    this.allProducts$ = this.productService.getProducts(this.mainSettings.storeId);
+    this.updateList();
+
+    this.allProducts$ = this.updateData$.pipe( switchMap(() => this.productService.getProducts(this.mainSettings.storeId) ));
 
     this.filteredproducts$ = combineLatest([this.allProducts$, this.searchInput$]).pipe(
       map((combined) => this.compareFunction(combined[0], combined[1])),
@@ -43,7 +58,7 @@ export class ListComponent {
         const page = combined[1];
         const products = combined[0];
         if (!products || !page) {
-          return products;
+          return [];
         }
         const skip = page.pageIndex === 0 ? 0 : page.pageIndex * page.pageSize;
         return products.slice(skip, skip + page.pageSize)
@@ -75,5 +90,17 @@ export class ListComponent {
 
   paginator(page: PageEvent) {
     this.pageEvent$.next(page)
+  }
+
+  deleteProduct(productId: string) {
+    this.productService.deleteProduct(this.mainSettings.storeId, productId).subscribe(
+      response => {
+        this.updateList();
+      }
+    )
+  }
+
+  updateList() {
+    this.updateData$.next();
   }
 }

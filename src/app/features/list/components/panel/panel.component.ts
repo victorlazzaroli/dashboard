@@ -1,4 +1,5 @@
 import {Component, Input} from '@angular/core';
+import {layoutType} from "../../../../shared/types/layoutType";
 
 @Component({
   selector: 'app-panel',
@@ -7,6 +8,6 @@ import {Component, Input} from '@angular/core';
 })
 export class PanelComponent {
   @Input()
-  layout: 'row' | 'grid' = 'row';
+  layout: layoutType = 'row';
 
 }

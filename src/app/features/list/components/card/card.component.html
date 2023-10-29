@@ -1,4 +1,4 @@
-<mat-card class="card" *ngIf=" layout === 'card'; else row">
+<mat-card class="grid" *ngIf=" layout === 'grid'; else row">
   <mat-card-header *ngIf="isInFields('title') || isInFields('category')">
     <mat-card-title *ngIf="isInFields('title')">{{product?.data?.title}}</mat-card-title>
     <mat-card-subtitle *ngIf="isInFields('category')"><span>{{ 'CATEGORY_LABEL' | translate}}</span> {{product?.data?.category}} </mat-card-subtitle>
@@ -25,7 +25,7 @@
     <div class="row__checkbox">
       <mat-checkbox></mat-checkbox>
     </div>
-    <div class="row__header" *ngIf="isInFields('title') || isInFields('category')">
+    <div class="row__header" *ngIf="isInFields('title') || isInFields('category')" [ngClass]="{'row__header--fullwidth': !isInFields('description') && !isInFields('employee')}">
       <span class="row__title" *ngIf="isInFields('title')"><strong>{{product?.data?.title }}</strong></span>
       <span class="row__category" *ngIf="isInFields('category')">{{product?.data?.category }}</span>
     </div>

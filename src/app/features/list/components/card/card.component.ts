@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {ProductDTO} from "../../../../core/dtos/Product";
+import {layoutType} from "../../../../shared/types/layoutType";
 
 @Component({
   selector: 'app-card',
@@ -8,7 +9,7 @@ import {ProductDTO} from "../../../../core/dtos/Product";
 })
 export class CardComponent {
   @Input()
-  layout: 'card' | 'row' = 'row';
+  layout: layoutType = 'row';
 
   @Input()
   product: ProductDTO | null = null;

@@ -4,6 +4,7 @@ import {ProductService} from "../../shared/services/product.service";
 import Settings from "../../core/constants/settings";
 import {BehaviorSubject, combineLatest, filter, map, Observable, of, skip, tap} from "rxjs";
 import {PageEvent} from "@angular/material/paginator";
+import {layoutType} from "../../shared/types/layoutType";
 
 @Component({
   selector: 'app-list',
@@ -24,6 +25,8 @@ export class ListComponent {
   protected readonly mainSettings = inject(Settings)
 
   productService = inject(ProductService)
+
+  layout: layoutType = 'row';
 
   constructor() {
     this.allProducts$ = this.productService.getProducts(this.mainSettings.storeId);

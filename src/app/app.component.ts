@@ -1,5 +1,6 @@
 import {Component, inject} from '@angular/core';
 import Settings from "./core/constants/settings";
+import {StoreService} from "./shared/services/store.service";
 
 @Component({
   selector: 'app-root',
@@ -7,7 +8,7 @@ import Settings from "./core/constants/settings";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  mainSettings = inject(Settings)
+  storeService = inject(StoreService)
 
-  title = this.mainSettings.siteTitle;
+  storeData$ = this.storeService.storeData$;
 }

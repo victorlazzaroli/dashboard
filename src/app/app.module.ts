@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -10,6 +10,8 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {FeaturesModule} from "./features/features.module";
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+import {initializeAppFactory} from "./shared/utils/resolvers";
+import {StoreService} from "./shared/services/store.service";
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -35,7 +37,12 @@ export function HttpLoaderFactory(http: HttpClient) {
       defaultLanguage: 'it'
     })
   ],
-  providers: [],
+  providers: [{
+    provide: APP_INITIALIZER,
+    useFactory: initializeAppFactory,
+    deps: [StoreService],
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

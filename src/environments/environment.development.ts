@@ -3,8 +3,8 @@ export const environment = {
   apiUrl: 'http://localhost:4200',
 
   storeApi: {
-    getStores: '/api/store',
-    getStore: '/api/store/{idStore}'
+    getStores: '/api/stores',
+    getStore: '/api/stores/{idStore}'
   },
 
   productApi: {

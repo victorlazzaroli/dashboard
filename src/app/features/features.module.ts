@@ -5,7 +5,7 @@ import { DetailComponent } from './detail/detail.component';
 import { PanelComponent } from './list/components/panel/panel.component';
 import { ToolbarComponent } from './list/components/toolbar/toolbar.component';
 import {MatIconModule} from "@angular/material/icon";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
@@ -19,6 +19,7 @@ import { ActionbarComponent } from './list/components/actionbar/actionbar.compon
 import {MatPaginatorModule} from "@angular/material/paginator";
 import { CardComponent } from './list/components/card/card.component';
 import {MatCardModule} from "@angular/material/card";
+import {MatExpansionModule} from "@angular/material/expansion";
 
 
 @NgModule({
@@ -44,7 +45,9 @@ import {MatCardModule} from "@angular/material/card";
     MatOptionModule,
     MatSelectModule,
     MatPaginatorModule,
-    MatCardModule
+    MatCardModule,
+    MatExpansionModule,
+    ReactiveFormsModule
   ]
 })
 export class FeaturesModule { }

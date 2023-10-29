@@ -1,5 +1,5 @@
 <header>
-  <app-header [storeName]="title"></app-header>
+  <app-header [storeName]="( storeData$ | async)?.name"></app-header>
 </header>
 <main role="main">
   <router-outlet></router-outlet>

@@ -1,1 +1,42 @@
-<p>detail works!</p>
+<form [formGroup]="form" (ngSubmit)="submit()" (reset)="reset()">
+  <div>
+    <input [formControlName]="'title'" />
+  </div>
+  <div>
+    <input [formControlName]="'category'" />
+  </div>
+  <div>
+    <input [formControlName]="'price'" />
+  </div>
+  <div>
+    <textarea [formControlName]="'description'"></textarea>
+    <mat-select [formControlName]="'employee'">
+      <mat-option *ngFor="let employee of employees" [value]="employee">
+        {{employee}}
+      </mat-option>
+    </mat-select>
+  </div>
+  <div>
+    <mat-accordion>
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            This is the expansion title
+          </mat-panel-title>
+          <mat-panel-description>
+            This is a summary of the content
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div>
+          <div *ngFor="let comment of form.controls['reviews']?.value">
+            {{comment}}
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+  <div>
+    <button type="submit">Salva</button>
+    <button type="reset">Resetta</button>
+  </div>
+</form>

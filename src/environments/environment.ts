@@ -3,8 +3,8 @@ export const environment = {
   apiUrl: 'http://us-central1-test-b7665.cloudfunctions.net/api/',
 
   storeApi: {
-    getStores: '/store',
-    getStore: '/store/{idStore}'
+    getStores: '/stores',
+    getStore: '/stores/{idStore}'
   },
 
   productApi: {

@@ -3,6 +3,9 @@ import {FormBuilder, FormGroup, UntypedFormGroup, Validators} from "@angular/for
 import {ProductDTO} from "../../core/dtos/Product";
 import {StoreService} from "../../shared/services/store.service";
 import Product from "../../core/models/product";
+import Settings from "../../core/constants/settings";
+import {ProductService} from "../../shared/services/product.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-detail',
@@ -10,8 +13,10 @@ import Product from "../../core/models/product";
   styleUrls: ['./detail.component.css']
 })
 export class DetailComponent {
-  formBuilder = inject(FormBuilder);
-  storeService: StoreService = inject(StoreService);
+  private readonly formBuilder = inject(FormBuilder);
+  private readonly storeService: StoreService = inject(StoreService);
+  private readonly productService = inject(ProductService)
+  private readonly router = inject(Router)
 
   @Input()
   set product(product: Product | null) {
@@ -69,6 +74,14 @@ export class DetailComponent {
 
   reset(): void {
     this.form.reset();
+  }
+
+  delete() {
+    this.productService.deleteProduct(this.storeService.storeId, this.id || null).subscribe(
+      response => {
+        this.router.navigate(['/products'])
+      }
+    )
   }
 }
 

@@ -10,9 +10,7 @@ import {
   Observable,
   of,
   ReplaySubject,
-  retryWhen,
-  skip,
-  Subject, switchMap,
+  switchMap,
   tap
 } from "rxjs";
 import {PageEvent} from "@angular/material/paginator";

@@ -1,5 +1,5 @@
 import {inject, Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable, throwError} from "rxjs";
 import {ProductDTO, ProductList} from "../../core/dtos/Product";
 import {environment} from "../../../environments/environment";
@@ -41,5 +41,20 @@ export class ProductService {
     const url = this.baseUrl + environment.productApi.deleteProduct.replace('{idStore}', idStore).replace('{idProduct}', idProduct);
 
     return this.http.delete<void>(url)
+  }
+
+  postProduct(idStore: string, product: Product) {
+    if (!product || !idStore) {
+      throw throwError(() => 'Invalid paramaters')
+    }
+
+    const url = this.baseUrl + environment.productApi.postProduct.replace('{idStore}', idStore);
+    const body = JSON.stringify(product);
+    var headers = new HttpHeaders({
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    });
+
+    return this.http.post(url, body, {headers: headers});
   }
 }

@@ -45,9 +45,6 @@ export class DetailComponent {
 
   __mode: 'C' | 'U' = 'C';
 
-  @Output()
-  productChange: EventEmitter<ProductDTO | null> = new EventEmitter<ProductDTO | null>()
-
   employees: string[] = this.storeService.storeData$.value?.employees || [];
 
   form: UntypedFormGroup = this.formBuilder.group({
@@ -63,17 +60,16 @@ export class DetailComponent {
     if (!this.product || this.mode === 'C') {
       return this.form.reset();
     }
-    console.log(this.product, this.mode)
     this.form.patchValue(this.product)
+    this.form.disable();
   }
 
   submit(): void {
-    const newProduct: ProductDTO = {id: this.id, data: this.form.value}
-    this.productChange.emit(newProduct)
-  }
-
-  reset(): void {
-    this.form.reset();
+    this.productService.postProduct(this.storeService.storeId, this.form.value).subscribe(
+      response => {
+        this.router.navigate(['/products'])
+      }
+    )
   }
 
   delete() {

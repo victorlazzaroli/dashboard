@@ -46,7 +46,7 @@
         </mat-accordion>
       </div>
       <div class="detail__actions">
-        <button mat-raised-button color="primary" type="submit">{{'SAVE_BUTTON' | translate }}</button>
+        <button *ngIf="mode === 'C'" mat-raised-button color="primary" type="submit">{{'SAVE_BUTTON' | translate }}</button>
         <button *ngIf="mode !== 'C'" mat-raised-button color="warn" type="button" (click)="delete()">{{'REMOVE_PRODUCT_BUTTON' | translate }}</button>
       </div>
     </form>

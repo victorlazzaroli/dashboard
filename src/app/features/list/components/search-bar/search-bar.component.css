@@ -5,22 +5,6 @@
   margin: 15px 0;
 }
 
-.searchbar input {
-  width: 100%;
-  border-radius: 5px;
-  padding: 0.5rem;
-  font-size: 1.1rem;
-}
-
-.searchbar input::placeholder {
-  opacity: 0.5;
-}
-
-.searchbar input:focus {
-  background: #f3f3f3;
-  border: 1px solid #dedede;
-}
-
 .searchbar button {
   height: 48px;
 }

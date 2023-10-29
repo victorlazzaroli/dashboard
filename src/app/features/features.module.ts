@@ -20,6 +20,7 @@ import {MatPaginatorModule} from "@angular/material/paginator";
 import { CardComponent } from './list/components/card/card.component';
 import {MatCardModule} from "@angular/material/card";
 import {MatExpansionModule} from "@angular/material/expansion";
+import {RouterLink} from "@angular/router";
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import {MatExpansionModule} from "@angular/material/expansion";
     MatPaginatorModule,
     MatCardModule,
     MatExpansionModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterLink
   ]
 })
 export class FeaturesModule { }

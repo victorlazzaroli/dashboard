@@ -2,6 +2,7 @@ import {Component, EventEmitter, inject, Input, Output} from '@angular/core';
 import {FormBuilder, FormGroup, UntypedFormGroup, Validators} from "@angular/forms";
 import {ProductDTO} from "../../core/dtos/Product";
 import {StoreService} from "../../shared/services/store.service";
+import Product from "../../core/models/product";
 
 @Component({
   selector: 'app-detail',
@@ -13,19 +14,19 @@ export class DetailComponent {
   storeService: StoreService = inject(StoreService);
 
   @Input()
-  set product(product: ProductDTO | null) {
+  set product(product: Product | null) {
     this.__product = product;
     this.updateForm();
   }
 
-  protected __product: ProductDTO | null = null;
+  protected __product: Product | null = null;
 
-  get product(): ProductDTO | null {
+  get product(): Product | null {
     return this.__product;
   }
 
   @Input()
-  id?: string | null;
+  id?: string;
 
   @Input()
   set mode(mode: 'C' | 'U') {
@@ -62,7 +63,7 @@ export class DetailComponent {
   }
 
   submit(): void {
-    const newProduct: ProductDTO = {id: this.product?.id, data: this.form.value}
+    const newProduct: ProductDTO = {id: this.id, data: this.form.value}
     this.productChange.emit(newProduct)
   }
 

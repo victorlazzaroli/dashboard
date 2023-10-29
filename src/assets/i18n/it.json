@@ -9,5 +9,11 @@
   "CATEGORY_LABEL": "Categoria",
   "VIEW_BUTTON": "Dettagli",
   "PRICE_LABEL": "Prezzo",
-  "EMPOLOYEE_LABEL": "Dipendente"
+  "EMPOLOYEE_LABEL": "Dipendente",
+  "TITLE_LABEL": "Titolo",
+  "DESCRIPTION_LABEL": "Descrizione",
+  "REVIEWS_LABEL": "Commenti",
+  "SAVE_BUTTON": "Salva",
+  "CANCEL_BUTTON": "Annulla",
+  "REVIEWS_ACCORDION_TITLE": "Commenti"
 }

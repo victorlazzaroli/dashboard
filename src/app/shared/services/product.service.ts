@@ -1,8 +1,9 @@
 import {inject, Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable, throwError} from "rxjs";
-import {ProductList} from "../../core/dtos/Product";
+import {ProductDTO, ProductList} from "../../core/dtos/Product";
 import {environment} from "../../../environments/environment";
+import Product from "../../core/models/product";
 
 @Injectable({
   providedIn: 'root'
@@ -20,5 +21,15 @@ export class ProductService {
     const url = this.baseUrl + environment.productApi.getProducts.replace('{idStore}', idStore);
 
     return this.http.get<ProductList>(url)
+  }
+
+  getProduct(idProduct: string, idStore: string): Observable<Product> {
+    if (!idProduct || !idStore) {
+      throw throwError(() => 'Invalid paramaters')
+    }
+
+    const url = this.baseUrl + environment.productApi.getProduct.replace('{idStore}', idStore).replace('{idProduct}', idProduct);
+
+    return this.http.get<Product>(url)
   }
 }

@@ -24,6 +24,21 @@ export class DetailComponent {
     return this.__product;
   }
 
+  @Input()
+  id?: string | null;
+
+  @Input()
+  set mode(mode: 'C' | 'U') {
+    this.__mode = mode;
+    this.updateForm();
+  }
+
+  get mode(): 'C' | 'U' {
+    return this.__mode;
+  }
+
+  __mode: 'C' | 'U' = 'C';
+
   @Output()
   productChange: EventEmitter<ProductDTO | null> = new EventEmitter<ProductDTO | null>()
 
@@ -39,10 +54,11 @@ export class DetailComponent {
   })
 
   updateForm(): void {
-    if (!this.product?.data) {
+    if (!this.product || this.mode === 'C') {
       return this.form.reset();
     }
-    this.form.patchValue(this.product.data)
+    console.log(this.product, this.mode)
+    this.form.patchValue(this.product)
   }
 
   submit(): void {

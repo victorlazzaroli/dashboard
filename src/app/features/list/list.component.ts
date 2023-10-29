@@ -11,13 +11,13 @@ import {Observable, of} from "rxjs";
 })
 export class ListComponent implements OnInit {
 
-  products: Observable<ProductDTO[] | null> = of([]);
+  products$: Observable<ProductDTO[] | null> = of([]);
   protected readonly mainSettings = inject(Settings)
 
   productService = inject(ProductService)
 
   ngOnInit() {
-    this.products = this.productService.getProducts(this.mainSettings.storeId);
+    this.products$ = this.productService.getProducts(this.mainSettings.storeId);
   }
 
 }

@@ -1,0 +1,61 @@
+:host {
+  width: 100%;
+  height: 100%;
+}
+
+card {
+  height: 100%;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 0.5rem 0.5rem;
+  max-height: 100px;
+}
+
+
+.row__header {
+  width: clamp(100px, 20%, 300px);
+}
+
+.row__header--fullwidth {
+  flex-grow: 1;
+}
+
+.row__header > span {
+  display: block;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.row__title {
+  font-size: 1.2rem;
+  margin-bottom: 2px;
+}
+
+.row__main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.row__desc {
+  flex-grow: 1;
+  width: 100%;
+  white-space: break-spaces;
+  overflow: hidden;
+}
+
+.row__price > * {
+  display: block;
+}
+
+.row__actions button{
+  display: block;
+}

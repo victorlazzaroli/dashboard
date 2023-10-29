@@ -1,0 +1,48 @@
+<mat-card class="card" *ngIf=" layout === 'card'; else row">
+  <mat-card-header *ngIf="isInFields('title') || isInFields('category')">
+    <mat-card-title *ngIf="isInFields('title')">{{product?.data?.title}}</mat-card-title>
+    <mat-card-subtitle *ngIf="isInFields('category')"><span>{{ 'CATEGORY_LABEL' | translate}}</span> {{product?.data?.category}} </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content style="margin-top: 1rem"  *ngIf="isInFields('description') || isInFields('employee')  || isInFields('price')">
+    <div *ngIf="isInFields('description')">
+      <p>{{product?.data?.description}}</p>
+    </div>
+    <div *ngIf="isInFields('employee')">
+      <strong>{{"EMPOLOYEE_LABEL" | translate}}: </strong><span>{{product?.data?.employee }}</span>
+    </div>
+    <div *ngIf="isInFields('price')">
+      <strong>{{"PRICE_LABEL" | translate}}: </strong><span>{{product?.data?.price | currency:'EUR':'symbol':'1.2-2'}}</span>
+    </div>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <button mat-button color="primary">{{"VIEW_BUTTON" | translate | uppercase}}</button>
+    <button mat-button color="warn"><span>{{"REMOVE_PRODUCT_BUTTON" | translate | uppercase}}</span></button>
+  </mat-card-actions>
+</mat-card>
+
+<ng-template #row>
+  <div class="row">
+    <div class="row__checkbox">
+      <mat-checkbox></mat-checkbox>
+    </div>
+    <div class="row__header" *ngIf="isInFields('title') || isInFields('category')">
+      <span class="row__title" *ngIf="isInFields('title')"><strong>{{product?.data?.title }}</strong></span>
+      <span class="row__category" *ngIf="isInFields('category')">{{product?.data?.category }}</span>
+    </div>
+    <div class="row__main" *ngIf="isInFields('description') || isInFields('employee') ">
+      <div class="row__desc" *ngIf="isInFields('description')">
+        <p>{{product?.data?.description}}</p>
+      </div>
+      <div *ngIf="isInFields('employee')">
+        <strong>{{"EMPOLOYEE_LABEL" | translate}}: </strong><span>{{product?.data?.employee }}</span>
+      </div>
+    </div>
+    <div class="row__price" *ngIf="isInFields('price')">
+      <strong>{{"PRICE_LABEL" | translate}} </strong><span>{{product?.data?.price | currency:'EUR':'symbol':'1.2-2'}}</span>
+    </div>
+    <div class="row__actions">
+      <button mat-button color="primary">{{"VIEW_BUTTON" | translate | uppercase}}</button>
+      <button mat-button color="warn"><span>{{"REMOVE_PRODUCT_BUTTON" | translate | uppercase}}</span></button>
+    </div>
+  </div>
+</ng-template>

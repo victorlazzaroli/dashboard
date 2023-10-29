@@ -1,46 +1,54 @@
-<form [formGroup]="form" (ngSubmit)="submit()" (reset)="reset()">
-  <div>
-    <label for="title">{{'TITLE_LABEL' | translate }}</label>
-    <input id="title" [formControlName]="'title'" />
+<div class="detail">
+  <div class="detail__header">
+    <h2><a routerLink="/products">{{ "PRODUCTS_PAGE_TITLE" | translate }}</a> > <strong>{{product?.title || 'Nuovo prodotto'}}</strong></h2>
   </div>
   <div>
-    <label for="category">{{'CATEGORY_LABEL' | translate }}</label>
-    <input id="category" [formControlName]="'category'" />
+
+    <form [formGroup]="form" (ngSubmit)="submit()" (reset)="reset()">
+      <div>
+        <label for="title">{{'TITLE_LABEL' | translate }}</label>
+        <input id="title" [formControlName]="'title'" />
+      </div>
+      <div>
+        <label for="category">{{'CATEGORY_LABEL' | translate }}</label>
+        <input id="category" [formControlName]="'category'" />
+      </div>
+      <div>
+        <label for="price">{{'PRICE_LABEL' | translate }}</label>
+        <input id="price" type="number" [formControlName]="'price'" />
+      </div>
+      <div>
+        <label for="description">{{'DESCRIPTION_LABEL' | translate }}</label>
+        <textarea id="description" [formControlName]="'description'" rows="5"></textarea>
+      </div>
+      <div>
+        <label for="employee">{{'EMPOLOYEE_LABEL' | translate }}</label>
+        <mat-select class="select" id="employee" [formControlName]="'employee'">
+          <mat-option *ngFor="let employee of employees" [value]="employee">
+            {{employee}}
+          </mat-option>
+        </mat-select>
+      </div>
+      <div *ngIf="mode !== 'C' && product?.reviews?.length !== 0 ">
+        <mat-accordion>
+          <mat-expansion-panel hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{'REVIEWS_ACCORDION_TITLE' | translate }}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div>
+              <div *ngFor="let comment of form.controls['reviews']?.value">
+                {{comment}}
+              </div>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+      <div class="detail__actions">
+        <button mat-raised-button color="primary" type="submit">{{'SAVE_BUTTON' | translate }}</button>
+        <button *ngIf="mode !== 'C'" mat-raised-button color="warn" type="reset">{{'REMOVE_PRODUCT_BUTTON' | translate }}</button>
+      </div>
+    </form>
   </div>
-  <div>
-    <label for="price">{{'PRICE_LABEL' | translate }}</label>
-    <input id="price" type="number" [formControlName]="'price'" />
-  </div>
-  <div>
-    <label for="description">{{'DESCRIPTION_LABEL' | translate }}</label>
-    <textarea id="description" [formControlName]="'description'" rows="5"></textarea>
-  </div>
-  <div>
-    <label for="employee">{{'EMPOLOYEE_LABEL' | translate }}</label>
-    <mat-select class="select" id="employee" [formControlName]="'employee'">
-      <mat-option *ngFor="let employee of employees" [value]="employee">
-        {{employee}}
-      </mat-option>
-    </mat-select>
-  </div>
-  <div *ngIf="mode !== 'C' && product?.reviews?.length !== 0 ">
-    <mat-accordion>
-      <mat-expansion-panel hideToggle>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            {{'REVIEWS_ACCORDION_TITLE' | translate }}
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <div>
-          <div *ngFor="let comment of form.controls['reviews']?.value">
-            {{comment}}
-          </div>
-        </div>
-      </mat-expansion-panel>
-    </mat-accordion>
-  </div>
-  <div class="detail__actions">
-    <button mat-raised-button color="primary" type="submit">{{'SAVE_BUTTON' | translate }}</button>
-    <button *ngIf="mode !== 'C'" mat-raised-button color="warn" type="reset">{{'REMOVE_PRODUCT_BUTTON' | translate }}</button>
-  </div>
-</form>
+</div>

@@ -1,6 +1,15 @@
 :host {
   width: 100%;
-  display: flex;
+}
+
+.detail__header {
+  margin-top: 2rem;
+  width: 100%;
+  font-weight: light;
+}
+
+.detail__header a {
+  text-decoration: underline;
 }
 
 form {

@@ -38,6 +38,7 @@ export class ListComponent {
   updateData$: ReplaySubject<void> = new ReplaySubject<void>();
 
   layout: layoutType = 'row';
+  spinner: boolean = false;
 
   constructor() {
     this.updateList();
@@ -48,6 +49,7 @@ export class ListComponent {
       map((combined) => this.compareFunction(combined[0], combined[1])),
       tap((result) => {
         this.page.length = result?.length || 0;
+        this.spinner = false;
       })
     )
 
@@ -99,6 +101,7 @@ export class ListComponent {
   }
 
   updateList() {
+    this.spinner = true;
     this.updateData$.next();
   }
 }

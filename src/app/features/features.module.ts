@@ -21,6 +21,7 @@ import { CardComponent } from './list/components/card/card.component';
 import {MatCardModule} from "@angular/material/card";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {RouterLink} from "@angular/router";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 
 @NgModule({
@@ -33,23 +34,24 @@ import {RouterLink} from "@angular/router";
     ActionbarComponent,
     CardComponent
   ],
-  imports: [
-    CommonModule,
-    MatIconModule,
-    FormsModule,
-    MatButtonToggleModule,
-    MatInputModule,
-    MatButtonModule,
-    TranslateModule,
-    MatCheckboxModule,
-    MatTooltipModule,
-    MatOptionModule,
-    MatSelectModule,
-    MatPaginatorModule,
-    MatCardModule,
-    MatExpansionModule,
-    ReactiveFormsModule,
-    RouterLink
-  ]
+    imports: [
+        CommonModule,
+        MatIconModule,
+        FormsModule,
+        MatButtonToggleModule,
+        MatInputModule,
+        MatButtonModule,
+        TranslateModule,
+        MatCheckboxModule,
+        MatTooltipModule,
+        MatOptionModule,
+        MatSelectModule,
+        MatPaginatorModule,
+        MatCardModule,
+        MatExpansionModule,
+        ReactiveFormsModule,
+        RouterLink,
+        MatProgressSpinnerModule
+    ]
 })
 export class FeaturesModule { }

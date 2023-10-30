@@ -1,6 +1,8 @@
 # Dashboard
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.7.
+Backoffice app dedicated to an online shop’s employees, where they can create, display and delete products from the office or on the go during their work travels.
+
+It provides users the possibility to change the products list from a panel layout to grid/tiles layout. Moreover, a chart visualizes the products per category ratio.
 
 ## Development server
 

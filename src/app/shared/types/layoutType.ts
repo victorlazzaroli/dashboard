@@ -1,1 +1,1 @@
-export type layoutType = 'row' | 'grid';
+export type layoutType = 'row' | 'grid' | 'chart';

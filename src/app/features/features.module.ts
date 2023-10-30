@@ -22,6 +22,7 @@ import {MatCardModule} from "@angular/material/card";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {RouterLink} from "@angular/router";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {ChartComponent} from "./list/components/chart/chart.component";
 
 
 @NgModule({
@@ -32,26 +33,27 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     ToolbarComponent,
     SearchBarComponent,
     ActionbarComponent,
-    CardComponent
+    CardComponent,
+    ChartComponent
   ],
-    imports: [
-        CommonModule,
-        MatIconModule,
-        FormsModule,
-        MatButtonToggleModule,
-        MatInputModule,
-        MatButtonModule,
-        TranslateModule,
-        MatCheckboxModule,
-        MatTooltipModule,
-        MatOptionModule,
-        MatSelectModule,
-        MatPaginatorModule,
-        MatCardModule,
-        MatExpansionModule,
-        ReactiveFormsModule,
-        RouterLink,
-        MatProgressSpinnerModule
-    ]
+  imports: [
+    CommonModule,
+    MatIconModule,
+    FormsModule,
+    MatButtonToggleModule,
+    MatInputModule,
+    MatButtonModule,
+    TranslateModule,
+    MatCheckboxModule,
+    MatTooltipModule,
+    MatOptionModule,
+    MatSelectModule,
+    MatPaginatorModule,
+    MatCardModule,
+    MatExpansionModule,
+    ReactiveFormsModule,
+    RouterLink,
+    MatProgressSpinnerModule
+  ]
 })
 export class FeaturesModule { }

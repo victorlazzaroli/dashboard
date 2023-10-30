@@ -12,6 +12,14 @@
   text-decoration: underline;
 }
 
+.detail_apiError {
+  width: 100%;
+  margin: 1rem 0;
+  padding: 1rem;
+  background: #f78787;
+  color: white;
+}
+
 form {
   width: 100%;
   max-width: 900px;

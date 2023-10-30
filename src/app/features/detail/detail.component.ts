@@ -50,11 +50,12 @@ export class DetailComponent {
   form: UntypedFormGroup = this.formBuilder.group({
       title: [null, Validators.required],
       category: [null, Validators.required],
-      price: [null, Validators.required],
+      price: [null, [Validators.required, Validators.min(0)]],
       description: [null, Validators.required],
       employee: [null],
       reviews: [[]]
   })
+  apiErrors: string[] = [];
 
   updateForm(): void {
     if (!this.product || this.mode === 'C') {
@@ -65,9 +66,17 @@ export class DetailComponent {
   }
 
   submit(): void {
+    this.apiErrors = [];
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return
+    }
+
     this.productService.postProduct(this.storeService.storeId, this.form.value).subscribe(
       response => {
         this.router.navigate(['/products'])
+      }, errors => {
+        this.apiErrors = [...errors];
       }
     )
   }
@@ -75,6 +84,8 @@ export class DetailComponent {
   delete() {
     this.productService.deleteProduct(this.storeService.storeId, this.id || null).subscribe(
       response => {
+        this.router.navigate(['/products'])
+      }, errors => {
         this.router.navigate(['/products'])
       }
     )

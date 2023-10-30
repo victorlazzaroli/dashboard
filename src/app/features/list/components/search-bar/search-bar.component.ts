@@ -11,7 +11,7 @@ export class SearchBarComponent {
   @Output()
   search: EventEmitter<string> = new EventEmitter<string>();
 
-  searchEvent(value: string) {
-    this.search.emit(value);
+  searchEvent() {
+    this.search.emit(this.value || '');
   }
 }

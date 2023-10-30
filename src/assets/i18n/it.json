@@ -17,5 +17,7 @@
   "REVIEWS_LABEL": "Commenti",
   "SAVE_BUTTON": "Salva",
   "CANCEL_BUTTON": "Annulla",
-  "REVIEWS_ACCORDION_TITLE": "Commenti"
+  "REVIEWS_ACCORDION_TITLE": "Commenti",
+  "REQUIRED_FIELD": "Campo obbligatorio",
+  "PRICE_MIN_ERROR_FIELD": "Il valore minimo possibile è 0.00 "
 }

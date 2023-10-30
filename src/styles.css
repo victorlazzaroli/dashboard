@@ -64,3 +64,8 @@ input:disabled, textarea:disabled {
   background: none;
   border: 1px solid #dedede;
 }
+
+.mandatoryfield{
+  color: red;
+  font-size: 0.8rem;
+}

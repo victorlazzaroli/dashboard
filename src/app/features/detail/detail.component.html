@@ -2,32 +2,46 @@
   <div class="detail__header">
     <h2><a routerLink="/products">{{ "PRODUCTS_PAGE_TITLE" | translate }}</a> > <strong>{{product?.title || 'Nuovo prodotto'}}</strong></h2>
   </div>
-  <div>
 
+  <div>
+    <div class="detail_apiError" *ngIf="apiErrors && apiErrors.length > 0">
+      <li>
+        <ul *ngFor="let error of apiErrors"></ul>
+      </li>
+    </div>
     <form [formGroup]="form" (ngSubmit)="submit()">
       <div>
-        <label for="title">{{'TITLE_LABEL' | translate }}</label>
+        <label for="title">{{'TITLE_LABEL' | translate }}<sup class="mandatoryfield">*</sup></label>
         <input id="title" [formControlName]="'title'" />
+        <mat-error *ngIf="form.controls['title']?.touched && form.controls['title']?.errors">{{ 'REQUIRED_FIELD' | translate}}</mat-error>
       </div>
       <div>
-        <label for="category">{{'CATEGORY_LABEL' | translate }}</label>
+        <label for="category">{{'CATEGORY_LABEL' | translate }}<sup class="mandatoryfield">*</sup></label>
         <input id="category" [formControlName]="'category'" />
+        <mat-error *ngIf="form.controls['category']?.touched && form.controls['category']?.errors">{{ 'REQUIRED_FIELD' | translate}}</mat-error>
       </div>
       <div>
-        <label for="price">{{'PRICE_LABEL' | translate }}</label>
-        <input id="price" type="number" [formControlName]="'price'" />
+        <label for="price">{{'PRICE_LABEL' | translate }}<sup class="mandatoryfield">*</sup></label>
+        <input id="price" type="number" [formControlName]="'price'" />-
+        <ng-container *ngIf="form.controls['price']?.touched && form.controls['price']?.errors">
+          <mat-error *ngIf="form.controls['price']?.errors!['required']">{{ 'REQUIRED_FIELD' | translate}}</mat-error>
+          <mat-error *ngIf="form.controls['price']?.errors!['min']">{{ 'PRICE_MIN_ERROR_FIELD' | translate }}</mat-error>
+        </ng-container>
       </div>
       <div>
         <label for="description">{{'DESCRIPTION_LABEL' | translate }}</label>
         <textarea id="description" [formControlName]="'description'" rows="5"></textarea>
+        <mat-error *ngIf="form.controls['description']?.touched && form.controls['description']?.errors">{{ 'REQUIRED_FIELD' | translate}}</mat-error>
       </div>
       <div>
-        <label for="employee">{{'EMPOLOYEE_LABEL' | translate }}</label>
-        <mat-select class="select" id="employee" [formControlName]="'employee'">
-          <mat-option *ngFor="let employee of employees" [value]="employee">
-            {{employee}}
-          </mat-option>
-        </mat-select>
+        <label style="display: block" for="employee">{{'EMPOLOYEE_LABEL' | translate }}</label>
+        <mat-form-field style="display: block; width: 100%;">
+          <mat-select id="employee" [formControlName]="'employee'">
+            <mat-option *ngFor="let employee of employees" [value]="employee">
+              {{employee}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
       <div *ngIf="mode !== 'C' && product?.reviews?.length !== 0 ">
         <mat-accordion>

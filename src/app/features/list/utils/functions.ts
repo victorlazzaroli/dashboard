@@ -2,8 +2,6 @@ import {ProductDTO} from "../../../core/dtos/Product";
 import {PageEvent} from "@angular/material/paginator";
 
 export function compareFunction(list: ProductDTO[] | null, text: string | null): ProductDTO[] {
-  console.log('Testo: ', text);
-  console.log('Fine')
   // Ritorna tutta la lista se il testo è vuoto o la lista è vuota
   if (!text || !list) {
     return list || [];

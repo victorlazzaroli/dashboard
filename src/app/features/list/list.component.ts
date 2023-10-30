@@ -43,7 +43,9 @@ export class ListComponent {
   constructor() {
     this.updateList();
 
-    this.allProducts$ = this.updateData$.pipe( switchMap(() => this.productService.getProducts(this.mainSettings.storeId) ));
+    this.allProducts$ = this.updateData$.pipe(
+      tap(() => {this.spinner = true}),
+      switchMap(() => this.productService.getProducts(this.mainSettings.storeId) ));
 
     this.filteredproducts$ = combineLatest([this.allProducts$, this.searchInput$]).pipe(
       map((combined) => compareFunction(combined[0], combined[1])),
@@ -75,7 +77,6 @@ export class ListComponent {
   }
 
   updateList() {
-    this.spinner = true;
     this.updateData$.next();
   }
 }

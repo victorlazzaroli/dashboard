@@ -12,6 +12,20 @@
   text-decoration: underline;
 }
 
+.detail__review {
+  display: flex;
+  gap: 5px;
+}
+
+
+.detail__review input {
+  flex-grow: 1;
+}
+
+.detail__reviews div {
+  margin: 0.5rem 0;
+}
+
 .detail_apiError {
   width: 100%;
   margin: 1rem 0;
@@ -34,4 +48,9 @@ form div {
   display: flex;
   justify-content: flex-end;
   gap: 1rem;
+}
+
+.detail__reviews {
+  max-height: 50vh;
+  overflow: auto;
 }

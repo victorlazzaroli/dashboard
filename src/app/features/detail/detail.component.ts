@@ -1,5 +1,5 @@
 import {Component, EventEmitter, inject, Input, Output} from '@angular/core';
-import {FormBuilder, FormGroup, UntypedFormGroup, Validators} from "@angular/forms";
+import {FormArray, FormBuilder, FormControl, FormGroup, UntypedFormGroup, Validators} from "@angular/forms";
 import {ProductDTO} from "../../core/dtos/Product";
 import {StoreService} from "../../shared/services/store.service";
 import Product from "../../core/models/product";
@@ -47,21 +47,30 @@ export class DetailComponent {
 
   employees: string[] = this.storeService.storeData$.value?.employees || [];
 
+  newReviewVal: string | null = '';
+
   form: UntypedFormGroup = this.formBuilder.group({
       title: [null, Validators.required],
       category: [null, Validators.required],
       price: [null, [Validators.required, Validators.min(0)]],
       description: [null, Validators.required],
       employee: [null],
-      reviews: [[]]
+      reviews: this.formBuilder.array([]),
+      newReview: [null]
   })
   apiErrors: string[] = [];
+
+  get reviewsArray() {
+    return this.form.controls["reviews"] as FormArray;
+  }
 
   updateForm(): void {
     if (!this.product || this.mode === 'C') {
       return this.form.reset();
     }
+
     this.form.patchValue(this.product)
+    this.product.reviews?.map((review) => this.addReview(review));
     this.form.disable();
   }
 
@@ -71,6 +80,8 @@ export class DetailComponent {
       this.form.markAllAsTouched();
       return
     }
+
+    // console.log('Form:', this.form.value);
 
     this.productService.postProduct(this.storeService.storeId, this.form.value).subscribe(
       response => {
@@ -89,6 +100,21 @@ export class DetailComponent {
         this.router.navigate(['/products'])
       }
     )
+  }
+
+  reviewControl(i: number): FormControl {
+    return this.reviewsArray?.controls[i] as FormControl;
+  }
+
+  addReview(value: string) {
+    if (!value) return;
+    const length = this.reviewsArray.controls.length;
+    this.reviewsArray.insert(length, new FormControl(value));
+    this.form.get('newReview')?.reset();
+  }
+
+  removeReview(i: number) {
+    this.reviewsArray?.controls.splice(i, 1);
   }
 }
 

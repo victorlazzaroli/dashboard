@@ -43,21 +43,18 @@
           </mat-select>
         </mat-form-field>
       </div>
-      <div *ngIf="mode !== 'C' && product?.reviews?.length !== 0 ">
-        <mat-accordion>
-          <mat-expansion-panel hideToggle>
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                {{'REVIEWS_ACCORDION_TITLE' | translate }}
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-            <div>
-              <div *ngFor="let comment of form.controls['reviews']?.value">
-                {{comment}}
-              </div>
-            </div>
-          </mat-expansion-panel>
-        </mat-accordion>
+      <div class="detail__reviews">
+        <label style="display: block" for="employee">{{'REVIEWS_ACCORDION_TITLE' | translate }}</label>
+        <ng-container formArrayName="reviews">
+          <div class="detail__review" *ngFor="let el of reviewsArray.controls; index as i">
+            <input [formControl]="reviewControl(i)" [disabled]="true" />
+            <button *ngIf="mode === 'C'" mat-icon-button (click)="removeReview(i)"><mat-icon>delete</mat-icon></button>
+          </div>
+        </ng-container>
+        <div class="detail__review" *ngIf="mode === 'C'">
+          <input [formControlName]="'newReview'" />
+          <button mat-icon-button type="button" (click)="addReview(form.get('newReview')?.value)"><mat-icon>add</mat-icon></button>
+        </div>
       </div>
       <div class="detail__actions">
         <button *ngIf="mode === 'C'" mat-raised-button color="primary" type="submit">{{'SAVE_BUTTON' | translate }}</button>

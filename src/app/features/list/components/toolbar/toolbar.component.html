@@ -4,7 +4,7 @@
       <span>{{"FIELDS_LABEL_SELECTION" | translate}}</span>
     </div>
     <div class="toolbar__data__select">
-      <mat-select [(ngModel)]="data" multiple (ngModelChange)="selectFields()" >
+      <mat-select [(ngModel)]="data" multiple (ngModelChange)="selectFields()" [disabled]="layout === 'chart'">
         <mat-option *ngFor="let field of fieldList" [value]="field">
           {{field}}
         </mat-option>
@@ -15,6 +15,7 @@
     <mat-button-toggle-group name="panelLayout" aria-label="Product list layout" (change)="layoutSelect($event)" [value]="layout">
       <mat-button-toggle value="row"  [matTooltip]="'ROW_LAYOUT' | translate"><mat-icon>table_rows</mat-icon></mat-button-toggle>
       <mat-button-toggle value="grid" [matTooltip]="'GRID_LAYOUT' | translate"><mat-icon>grid_view</mat-icon></mat-button-toggle>
+      <mat-button-toggle value="chart" [matTooltip]="'CHART_LAYOUT' | translate"><mat-icon>incomplete_circle</mat-icon></mat-button-toggle>
     </mat-button-toggle-group>
   </div>
 </div>

@@ -10,7 +10,7 @@
     <app-toolbar #toolbar [(layout)]="layout" ></app-toolbar>
   </div>
 
-  <div class="list__items">
+  <div class="list__items" *ngIf="layout !== 'chart'">
     <app-panel [layout]="layout">
       <ng-container *ngFor="let product of (products$ | async)">
         <app-card [product]="product" [fields]="toolbar.data" [layout]="layout" (delete)="this.deleteProduct($event)"></app-card>
@@ -18,6 +18,10 @@
     </app-panel>
 
     <mat-paginator (page)="paginator($event)" [length]="page.length" [pageSize]="page.pageSize" [pageSizeOptions]="[5, 10, 25, 50]" aria-label="Select page" ></mat-paginator>
+  </div>
+
+  <div class="list__chart" *ngIf="layout === 'chart'">
+    <app-chart></app-chart>
   </div>
 
   <div class="list__spinner">

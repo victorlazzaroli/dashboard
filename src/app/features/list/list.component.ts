@@ -5,7 +5,6 @@ import Settings from "../../core/constants/settings";
 import {
   BehaviorSubject,
   combineLatest,
-  filter,
   map,
   Observable,
   of,
@@ -15,6 +14,7 @@ import {
 } from "rxjs";
 import {PageEvent} from "@angular/material/paginator";
 import {layoutType} from "../../shared/types/layoutType";
+import {compareFunction, paginatorFunction} from "./utils/functions";
 
 @Component({
   selector: 'app-list',
@@ -46,7 +46,7 @@ export class ListComponent {
     this.allProducts$ = this.updateData$.pipe( switchMap(() => this.productService.getProducts(this.mainSettings.storeId) ));
 
     this.filteredproducts$ = combineLatest([this.allProducts$, this.searchInput$]).pipe(
-      map((combined) => this.compareFunction(combined[0], combined[1])),
+      map((combined) => compareFunction(combined[0], combined[1])),
       tap((result) => {
         this.page.length = result?.length || 0;
         this.spinner = false;
@@ -54,34 +54,8 @@ export class ListComponent {
     )
 
     this.products$ = combineLatest([this.filteredproducts$, this.pageEvent$]).pipe(
-      map(combined => {
-        const page = combined[1];
-        const products = combined[0];
-        if (!products || !page) {
-          return [];
-        }
-        const skip = page.pageIndex === 0 ? 0 : page.pageIndex * page.pageSize;
-        return products.slice(skip, skip + page.pageSize)
-      }),
+      map(combined => paginatorFunction(combined[0], combined[1])),
     )
-  }
-
-
-
-  compareFunction(list: ProductDTO[] | null, text: string): ProductDTO[] {
-    // Ritorna tutta la lista se il testo è vuoto o la lista è vuota
-    if (!text || !list) {
-      return list || [];
-    }
-
-    // cerca in ogni elemento dell'oggetto se il testo è contenuto
-    return list.filter(product => {
-      if (product?.data) {
-        return JSON.stringify(Object.values(product.data)).includes(text)
-      }
-
-      return false;
-    })
   }
 
   searchTxt(text: string) {

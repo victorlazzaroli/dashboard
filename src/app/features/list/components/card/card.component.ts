@@ -12,9 +12,6 @@ import {ProductService} from "../../../../shared/services/product.service";
 export class CardComponent {
 
   @Input()
-  checked: boolean = false;
-
-  @Input()
   layout: layoutType = 'row';
 
   @Input()
@@ -24,18 +21,12 @@ export class CardComponent {
   fields: string[] = [];
 
   @Output()
-  check:EventEmitter<string> = new EventEmitter<string>();
-
-  @Output()
   delete:EventEmitter<string> = new EventEmitter<string>();
 
   protected isInFields(fieldName: string) {
     return this.fields.includes(fieldName);
   }
 
-  checkId() {
-    this.check.emit(this.product?.id);
-  }
 
   deleteEl() {
     this.delete.emit(this.product?.id);

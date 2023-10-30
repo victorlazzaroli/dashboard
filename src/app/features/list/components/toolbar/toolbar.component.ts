@@ -11,12 +11,6 @@ import Settings from "../../../../core/constants/settings";
 export class ToolbarComponent {
   readonly settings = inject(Settings)
 
-  @Input()
-  checkAll: boolean = false;
-
-  @Output()
-  checkAllChange: EventEmitter<boolean> = new EventEmitter<boolean>()
-
   @Output()
   selectedFields: EventEmitter<string[]> = new EventEmitter<string[]>()
 
@@ -26,13 +20,10 @@ export class ToolbarComponent {
   @Output()
   layoutChange: EventEmitter<layoutType> = new EventEmitter<layoutType>()
 
-  fieldList: string[] = ['title', 'category' , 'description', 'price', 'employee', 'reviews'];
+  fieldList: string[] = this.settings.allProductFields;
 
   data: string[] = this.settings.defaultProductFields;
 
-  check(checked: boolean) {
-    this.checkAllChange.emit(checked)
-  }
 
   selectFields() {
     this.selectedFields.emit(this.data);

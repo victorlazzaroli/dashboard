@@ -14,22 +14,14 @@
       <strong>{{"PRICE_LABEL" | translate}}: </strong><span>{{product?.data?.price | currency:'EUR':'symbol':'1.2-2'}}</span>
     </div>
   </mat-card-content>
-  <mat-card-actions style="display: flex">
-    <div>
-      <mat-checkbox [checked]="checked" (change)="checkId()"></mat-checkbox>
-    </div>
-    <div style="flex-grow: 1; text-align: end">
+  <mat-card-actions align="end">
       <a [routerLink]="['detail', product?.id]" mat-button color="primary">{{"VIEW_BUTTON" | translate | uppercase}}</a>
       <button mat-button color="warn" (click)="deleteEl()"><span>{{"REMOVE_PRODUCT_BUTTON" | translate | uppercase}}</span></button>
-    </div>
   </mat-card-actions>
 </mat-card>
 
 <ng-template #row>
   <div class="row">
-    <div class="row__checkbox">
-      <mat-checkbox [checked]="checked" (change)="checkId()"></mat-checkbox>
-    </div>
     <div class="row__header" *ngIf="isInFields('title') || isInFields('category')" [ngClass]="{'row__header--fullwidth': !isInFields('description') && !isInFields('employee')}">
       <span class="row__title" *ngIf="isInFields('title')"><strong>{{product?.data?.title }}</strong></span>
       <span class="row__category" *ngIf="isInFields('category')">{{product?.data?.category }}</span>

@@ -21,12 +21,6 @@
   padding-left: 0;
 }
 
-.toolbar__checkbox {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .toolbar__data {
   flex-grow: 1;
   display: flex;

@@ -5,7 +5,7 @@
   </div>
 
   <div class="list__toolbars">
-    <app-search-bar (search)="searchTxt($event)"></app-search-bar>
+    <app-search-bar (search)="searchTxt($event)" *ngIf="layout !== 'chart'"></app-search-bar>
 
     <app-toolbar #toolbar [(layout)]="layout" ></app-toolbar>
   </div>

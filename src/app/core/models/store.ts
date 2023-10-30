@@ -3,3 +3,8 @@ export default interface Store {
   category: string,
   name: string
 }
+
+export interface StatsCategories {
+  numberOfProducts: number,
+  category: string
+}

@@ -23,6 +23,7 @@ import {MatExpansionModule} from "@angular/material/expansion";
 import {RouterLink} from "@angular/router";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {ChartComponent} from "./list/components/chart/chart.component";
+import {NgChartsModule} from "ng2-charts";
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import {ChartComponent} from "./list/components/chart/chart.component";
     MatExpansionModule,
     ReactiveFormsModule,
     RouterLink,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    NgChartsModule
   ]
 })
 export class FeaturesModule { }

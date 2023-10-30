@@ -3,7 +3,7 @@ import {BehaviorSubject, Observable, tap, throwError} from "rxjs";
 import Store from "../../core/models/store";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
-import {StoreDTO} from "../../core/dtos/Store";
+import {StatsCategoriesDTO, StoreDTO} from "../../core/dtos/Store";
 import Settings from "../../core/constants/settings";
 
 @Injectable({
@@ -24,6 +24,16 @@ export class StoreService {
     const url = this.baseUrl + environment.storeApi.getStore.replace('{idStore}', idStore);
 
     return this.http.get<Store>(url);
+  }
+
+  getChart(idStore: string): Observable<StatsCategoriesDTO> {
+    if (!idStore) {
+      throw throwError(() => 'Invalid store')
+    }
+
+    const url = this.baseUrl + environment.statsApi.getStats.replace('{idStore}', idStore);
+
+    return this.http.get<StatsCategoriesDTO>(url);
   }
 
 
